@@ -1,1 +1,18 @@
-Hello World
+<script>
+    // Function to log a message using the serverless function
+    async function logToServerless(message) {
+        try {
+            const response = await fetch('/.netlify/functions/log?message=' + encodeURIComponent(message));
+            if (response.ok) {
+                console.log('Log entry recorded successfully.');
+            } else {
+                console.error('Failed to record log entry.');
+            }
+        } catch (error) {
+            console.error('Error sending log request:', error);
+        }
+    }
+
+    // Example: Log a message
+    logToServerless('This is a log message from the client.');
+</script>
